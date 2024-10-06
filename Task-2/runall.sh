@@ -4,11 +4,11 @@
 scripts=(
     "scripts/scrape.py"
     "scripts/combine-scrape.py"
-    "scripts/cleanup.py"
-    "scripts/add-county.py"
-    "scripts/aggregate.py"
-    "scripts/filter-pdp.py"
-    "scripts/Task2.py"
+    #"scripts/cleanup.py"
+    #"scripts/add-county.py"
+    #"scripts/aggregate.py"
+    #"scripts/filter-pdp.py"
+    #"scripts/Task2.py"
 )
 
 # Run each script
