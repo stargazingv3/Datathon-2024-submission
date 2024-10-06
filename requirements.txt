@@ -2,3 +2,4 @@ geopandas
 matplotlib
 pandas
 scipy
+scikit-learn
