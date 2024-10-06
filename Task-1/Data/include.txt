@@ -1,0 +1,32 @@
+Barley
+Corn Grain
+Corn Syrup
+Sweet Corn, Canned
+Sweet Corn, Fresh
+Sweet Corn, Frozen
+Oats
+Peanut Butter
+Potatoes
+Potatoes, Frozen
+Sweet Potatoes
+Black Beans, Canned
+Garbanzo Beans, Canned
+Garbanzo Beans, Dried
+Kidney Beans, Canned
+Pinto Beans, Canned
+Rice
+Soybean Grain
+Infant Formula, Soy-based
+Sweet Potatoes
+Wheat Flour
+Wheat grain
+Poultry Adipose
+Poultry Liver
+Poultry Muscle
+Poultry, Breast
+Poultry, Thigh
+Beef Adipose
+Beef Liver
+Beef Muscle
+Pork Adipose
+Pork Muscle

@@ -1,0 +1,62 @@
+The provided dataset only goes to 2020, so re-download the dataset requesting info up to 2022 from PdP: 
+	Place in Data/AnalyticalResults.csv
+
+Run scripts/cleanup-csv.py
+	Returns a file Data/AnalyticalResults-cleanup1.csv which contains rows that are exactly 16 columns, as specified by the UserGuide
+
+Run scripts/location-split.py
+	Returns a file Data/AnalyticalResults-cleanup2.csv which contains the first column split into the 7 or 8 fields as specified by the UserGuide
+
+Run scripts/crop-pdp.py
+	Returns a file Data/AnalyticalResults-cropped.csv which contains data only for specified years if desired
+
+Run scripts/pdp-include.py
+	Not all of the crops in the pdp dataset are used in the census dataset, so to cut those out, specify a list of commodity names which overlap with the census dataset
+	Download the Commodity Code lookup table, currently located at Data/CommodityHistory.csv, which contains a table of Commodity names to commodity codes
+	Returns a file Data/AnalyticalResults-overlap.csv which now contains crops which overlap with the census data
+
+Census Dataset
+Move to Data/AgChange
+
+Run scripts/filter-txt.py
+	Returns a file Data/AgChange/AgCensus_MasterDataFrame-cropped.txt which contains data from years of interest
+	The census dataset contains information from far back as 1840, so this is used to by default only consider data since 1992
+
+Run scripts/cleanup-txt.py
+	Returns a file Data/AgChange/AgCensus_MasterDataFrame-cleaned.txt which makes sure that each line has the same number of columns, which is 84 for the number of years we selected
+	Please disregard the bug saying the number of files removed is the same as the total number of files.
+
+Run scripts/census-exclude.py
+	Returns a file Data/AgChange/AgCensus_MasterDataFrame-overlap.txt which removes crops that are in the census but not in the pdp dataset
+
+Finally
+Run scripts/pdp-to-census.py
+	Returns a file Data/AnalyticalResults-Census.csv where the pdp dataset's commodity codes are updated to be that of the census' datasets'
+
+
+Manipulation/Analysis
+
+Run scripts/select-by-year-PdP.py
+	Returns a file Data/AnalyticalResults-Census-2017.csv which contains data for only the year 2017
+
+Run scripts/county-rankings-normalized.py
+	Returns a file Data/AgChange/County_Crop_Hotspots_2017.json which contains a json dict ranking each county for each crop and state according to their odds of producing said crop.
+	This is based on the standard deviation of the county's crop productino compared to the average in that state. It is stored in probability format, so that if I select a state and crop,
+	I can randomly receive back a county weighted by it's crop-production rate.
+	By default only runs for data in 2017
+
+Run scripts/county-selection.py
+	Returns a file Data/county-selection.csv for which the modified pdp dataset is now appended a county and FIPS code of that county
+	This is determined using the dict. returned by the prior command. For each row of the pdp dataset, the state and commodity code (now census' commodity code)
+	are searched in the dictionary and obtain the counties in that state, along with their weighted probability of being selected for that crop. A county is selected according to
+	said weight and then added to the row of the pdp dataset, finally inferring what county this pesticide was used in
+
+Run scripts/consolidate.py
+	Returns a file Data/county-final.csv which consolidates the pesticide usage by county.
+
+Run scripts/task1.py
+	Returns a file task1.png which is a coloring of U.S. counties by pesticide usage. It is slightly flawed in that very low concentration areas are not visible, so I included a 
+	screenshot of the plot as well.
+
+Assumptions/Decisions Made
+	Disregard what type of pesticide
